@@ -1,0 +1,29 @@
+<div *ngFor="let plat of (plats$ | async)">
+
+    <mat-card class="plat-card">
+        <img mat-card-image src="../../assets/pates-carbonara-cookeo.jpg" alt="Photo of a Shiba Inu">
+        
+        <mat-card-title>
+          <span >{{ plat.nom }}</span>
+        </mat-card-title>
+
+        <mat-card-subtitle>
+            <span >restaurant: {{ plat.restaurant.nom }}</span>
+          </mat-card-subtitle>
+        
+        <mat-card-content>
+            <p >{{ plat.description }}</p>
+        </mat-card-content> 
+        
+        <mat-card-actions>  
+          <div> <span class="plat-prix"> {{ plat.prix }} euros</span> </div>
+        </mat-card-actions>
+      </mat-card> 
+
+</div>
+
+
+
+
+
+

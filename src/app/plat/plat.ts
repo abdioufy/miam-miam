@@ -1,7 +1,3 @@
-import { IAdresse } from '../adresse';
-import { IGeopoint } from '../geopoint';
-import { Url } from 'url';
-import { ITag } from './tag';
 import { IRestaurant } from '../restaurant/restaurant';
 
 export interface IPlat {
@@ -12,7 +8,7 @@ export interface IPlat {
     chef?: string;
     jours: string[];
     photos: string[];
-    tags: ITag;
+    tags: string[];
     restaurant: IRestaurant; // to replace IRestaurantPlat
 
 }

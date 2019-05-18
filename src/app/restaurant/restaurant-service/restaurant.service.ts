@@ -7,11 +7,18 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class RestaurantService {
-
-  constructor(private readonly firestore: AngularFirestore) { }
+  constructor(private readonly firestore: AngularFirestore) {}
 
   list(): Observable<IRestaurant[]> {
-    return this.firestore.collection<IRestaurant>('/restaurants')
+    return this.firestore
+      .collection<IRestaurant>('/restaurants')
+      .valueChanges();
+  }
+
+  getByUser(): Observable<IRestaurant[]> {
+    // TODO filter by user
+    return this.firestore
+      .collection<IRestaurant>('/restaurants')
       .valueChanges();
   }
 }

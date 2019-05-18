@@ -8,9 +8,13 @@ import { IPlat } from '../plat';
   providedIn: 'root'
 })
 export class PlatService {
-  constructor(private readonly firestore: AngularFirestore) {}
+  constructor(private readonly db: AngularFirestore) {}
 
   list(): Observable<IPlat[]> {
-    return this.firestore.collection<IPlat>('/plats').valueChanges();
+    return this.db.collection<IPlat>('/plats').valueChanges();
+  }
+
+  add(plat: IPlat): void {
+     this.db.collection<IPlat>('/plat').add(plat);
   }
 }

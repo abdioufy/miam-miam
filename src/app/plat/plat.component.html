@@ -1,29 +1,86 @@
-<div *ngFor="let plat of (plats$ | async)">
+<form [formGroup]="platForm" class="plat-form" (ngSubmit)="submitHandler()">
+  <mat-form-field class="plat-full-width">
+    <mat-label>Restaurant</mat-label>
+    <mat-select formControlName="restaurant" required>
+      <mat-option
+        *ngFor="let resto of restaurantPlats$ | async"
+        [value]="resto"
+      >
+        {{ resto.nom }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-    <mat-card class="plat-card">
-        <img mat-card-image src="../../assets/pates-carbonara-cookeo.jpg" alt="Photo of a Shiba Inu">
-        
-        <mat-card-title>
-          <span >{{ plat.nom }}</span>
-        </mat-card-title>
+  <table class="plat-full-width" cellspacing="0">
+    <tr></tr>
+    <tr>
+      <td>
+        <mat-form-field class="plat-full-width">
+          <input matInput placeholder="Nom" formControlName="nom" />
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="plat-full-width">
+          <input matInput placeholder="Prix" formControlName="prix" />
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <mat-form-field class="plat-full-width">
+        <textarea
+          matInput
+          placeholder="Description"
+          formControlName="description"
+        ></textarea>
+      </mat-form-field>
+    </tr>
+    <tr>
+      <mat-form-field class="plat-full-width">
+        <input matInput placeholder="Chef" formControlName="chef" />
+      </mat-form-field>
+    </tr>
+  </table>
 
-        <mat-card-subtitle>
-            <span >restaurant: {{ plat.restaurant.nom }}</span>
-          </mat-card-subtitle>
-        
-        <mat-card-content>
-            <p >{{ plat.description }}</p>
-        </mat-card-content> 
-        
-        <mat-card-actions>  
-          <div> <span class="plat-prix"> {{ plat.prix }} euros</span> </div>
-        </mat-card-actions>
-      </mat-card> 
+  <div formArrayName="jours">
+      <button mat-button color="primary" type="button" (click)="addJour()">
+          +Ajouter une date
+        </button>
+    <div
+      *ngFor="let jour of jourForms.controls; let i = index"
+      [formGroupName]="i"
+    >
+      <mat-form-field>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          formControlName="jour"
+          placeholder="Choisir une date"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
 
-</div>
+      <button mat-button (click)="deleteJour(i)">
+        <i class="material-icons">delete</i>
+      </button>
+    </div>
 
-
-
-
-
-
+  </div>
+  <div >
+    <section  formGroupName="tags" class="plat-section">
+      <div *ngFor="let tag of tags" >
+            <mat-checkbox type="checkbox" [formControlName]="tag" class="plat-margin">{{ tag }}</mat-checkbox>
+      </div>
+    </section >
+  </div>
+  <br />
+  <br />
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="platForm.invalid"
+  >
+    Enregistrer
+  </button>
+</form>

@@ -8,13 +8,19 @@ import { environment } from 'src/environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { PlatComponent } from './plat/plat.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
+import { PlatDetailComponent } from './plat/plat-detail/plat-detail.component';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-import { from } from 'rxjs';
+import {MatInputModule} from '@angular/material/input';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatSelectModule} from '@angular/material/select';
 @NgModule({
-  declarations: [AppComponent, PlatComponent],
+  declarations: [AppComponent, PlatComponent, PlatDetailComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -22,10 +28,16 @@ import { from } from 'rxjs';
     AngularFirestoreModule,
     MatCardModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule
   ],
-  providers: [],
+  providers: [MatDatepickerModule],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

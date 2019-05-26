@@ -19,8 +19,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
+import { RestaurantComponent } from './restaurant/restaurant.component';
 @NgModule({
-  declarations: [AppComponent, PlatComponent, PlatDetailComponent],
+  declarations: [AppComponent, PlatComponent, PlatDetailComponent, RestaurantComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

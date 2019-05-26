@@ -1,0 +1,66 @@
+<form
+  [formGroup]="restaurantForm"
+  class="restaurant-form"
+  (ngSubmit)="submitHandler()"
+>
+  <mat-form-field class="restaurant-full-width">
+    <input matInput placeholder="Nom" formControlName="nom" />
+  </mat-form-field>
+
+  <div formGroupName="adresse">
+    <p>
+      <mat-form-field class="restaurant-full-width">
+        <textarea matInput placeholder="Adresse postale" formControlName="rue"></textarea>
+      </mat-form-field>
+    </p>
+    <table class="restaurant-full-width" cellspacing="0">
+      <tr>
+        <td>
+          <mat-form-field class="restaurant-full-width">
+            <input matInput placeholder="Ville" formControlName="ville" />
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="restaurant-full-width">
+            <input
+              matInput
+              #postalCode
+              maxlength="5"
+              placeholder="Code postal"
+              formControlName="codepostal"
+            />
+            <mat-hint align="end">{{ postalCode.value.length }} / 5</mat-hint>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div formGroupName="contact">
+    <table>
+      <tr>
+        <td>
+            <mat-form-field class="restaurant-full-width">
+                <span matPrefix>+33 &nbsp;</span>
+                <input type="tel" matInput placeholder="Telephone"  formControlName="telephone" />
+              </mat-form-field>
+        
+        </td>
+        <td>
+            <mat-form-field class="restaurant-full-width">
+                <input matInput placeholder="Email" formControlName="email"/>
+            </mat-form-field>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="restaurantForm.invalid"
+    >
+      Enregistrer
+    </button>
+  </div>
+</form>

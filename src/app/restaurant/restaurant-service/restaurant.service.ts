@@ -21,4 +21,10 @@ export class RestaurantService {
       .collection<IRestaurant>('/restaurants')
       .valueChanges();
   }
+
+  save(restaurant: IRestaurant) {
+    this.firestore
+    .collection<IRestaurant>('/restaurants')
+    .add(restaurant);
+  }
 }

@@ -25,6 +25,7 @@ export class RestaurantService {
   save(restaurant: IRestaurant) {
     this.firestore
     .collection<IRestaurant>('/restaurants')
-    .add(restaurant);
+    .add(restaurant)
+    .catch( error => console.error(error));
   }
 }
